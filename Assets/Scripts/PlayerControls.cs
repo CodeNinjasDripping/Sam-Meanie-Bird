@@ -5,12 +5,18 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     // Start is called before the first frame update
+    [Header("Game Controller Object for controling the game")]
+    public GameController gameController;
+    [Header("Velocity")]
+    public float velocity = 1;
+    private Rigidbody rb;
+    private float objectHeight;
     void Start()
     {
-        GameController = GetComponent<GameController>();
+        GameController gc = GetComponent<GameController>();
         Time.timeScale = 1;
-        rb = Getcomponent<Rigidbody>();
-        objectHeight = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        float objectHeight = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
     }
 
     // Update is called once per frame
@@ -18,7 +24,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            rb.velocity = Vector2.up * velocity;
+            rb.linearVelocity = Vector2.up * velocity;
         }    
     }
 }
